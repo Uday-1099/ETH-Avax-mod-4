@@ -60,7 +60,7 @@ contract MyToken is ERC20, Ownable {
         return "The below items are available in the confectionery store for purchase:\nItems 1-candy,2-cake,3-doughnut";
     }
 
-    function reedemTokens(uint8 _userSelection) external payable returns (bool) {
+    function redeemTokens(uint8 _userSelection) external payable returns (bool) {
         if (_userSelection == 1) {
             require(this.balanceOf(msg.sender) >= 75,"You do not have enough Degan");
             approve(msg.sender, 75);
