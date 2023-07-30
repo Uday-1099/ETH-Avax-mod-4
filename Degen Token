@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+import "hardhat/console.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
@@ -44,5 +45,46 @@ contract MyToken is ERC20, Ownable {
             allowance(sender, _msgSender()) - amount
         );
         return true;
+    }
+
+    function approve(address spender, uint256 amount) public override returns (bool) {
+        _approve(msg.sender, spender, amount);
+        return true;
+    }
+
+        function confectionerystoreitems() external view returns (string memory) {
+        console.log("The below items are available in the confectionery store for purchase:");
+        console.log("Item 1-candy");
+        console.log("Item 2-cake");
+        console.log("Item 3-doughnut");
+        return "The below items are available in the confectionery store for purchase:\nItems 1-candy,2-cake,3-doughnut";
+    }
+
+    function reedemTokens(uint8 _userSelection) external payable returns (bool) {
+        if (_userSelection == 1) {
+            require(this.balanceOf(msg.sender) >= 75,"You do not have enough Degan");
+            approve(msg.sender, 75);
+            transferFrom(msg.sender, owner(), 75);
+            console.log("you have successfully redeemed for candy");
+            return true;
+        }
+        else if (_userSelection == 2) {
+            require(this.balanceOf(msg.sender) >= 50,"You do not have enough Degan");
+            approve(msg.sender, 50);
+            transferFrom(msg.sender, owner(), 50);
+            console.log("you have successfully redeemed for cake");
+            return true;
+        }
+        else if (_userSelection == 3) {
+            require(this.balanceOf(msg.sender) >= 25,"You do not have enough Degan");
+            approve(msg.sender, 25);
+            transferFrom(msg.sender, owner(), 25);
+            console.log("you have successfully redeemed for doughnut");
+            return true;
+    }
+    else {
+        console.log("That is not a valid choice");
+        return false;
+    }
     }
 }
