@@ -1,4 +1,5 @@
 ## ETH-Avax-mod-4
+
 # MyToken Smart Contract (DegenToken)
 
 This repository contains the Solidity smart contract for the custom ERC20 token named "DegenToken" (symbol: "DGN"). The contract is built on the Ethereum blockchain and follows the ERC20 standard, making it compatible with various decentralized applications (dApps), wallets, and exchanges that support ERC20 tokens.
@@ -16,6 +17,12 @@ Token Minting: The contract owner can create new DegenToken tokens by calling th
 Token Burning: Token holders can burn their tokens using the burn function. This action is irreversible and effectively reduces the total supply of DegenToken.
 
 Token Redemption: Users can redeem (burn) their DegenToken tokens through the redeem function, reducing their balance by the specified amount.
+
+Redemption for Confectionery Store Items: The contract owner offers a confectionery store where users can redeem their tokens for specific items. The available items are as follows:
+
+Item 1: Candy (Cost: 75 DGN)
+Item 2: Cake (Cost: 50 DGN)
+Item 3: Doughnut (Cost: 25 DGN)
 
 Transfer and Approvals: Token holders can transfer tokens to other addresses using the standard transfer function. Additionally, they can authorize specific addresses (spenders) to transfer tokens on their behalf using the approve and transferFrom functions.
 
@@ -36,22 +43,23 @@ Deploy the contract:
 Deploy the compiled contract to the Ethereum blockchain using tools like Remix or Truffle.
 Usage
 
-Minting Tokens:
+To deploy the MyToken contract and create the DegenToken:
 
-As the contract owner, call the mint function and provide the recipient's address and the amount of DGN tokens to mint.
-Burning Tokens:
+Ensure you have the necessary Solidity compiler and development environment set up.
 
-Any token holder can call the burn function to burn a specific amount of their own tokens.
-Redeeming Tokens:
+Import the required libraries:
 
-Users can redeem (burn) their tokens by calling the redeem function with the desired amount.
-Transferring Tokens:
+hardhat/console.sol: For logging messages during contract execution.
+@openzeppelin/contracts/token/ERC20/ERC20.sol: For implementing the ERC20 token standard.
+@openzeppelin/contracts/access/Ownable.sol: For managing contract ownership.
+Deploy the contract by providing the desired constructor parameters (name and symbol).
 
-Token holders can transfer their tokens to another address using the transfer function.
-Approving Token Transfers:
+As the contract owner, you can mint new tokens using the mint function.
 
-To allow a spender to transfer tokens on your behalf, use the approve function first to set the allowance.
-The spender can then use the transferFrom function to transfer tokens on your behalf.
+Token holders can transfer and burn their tokens using transfer and burn functions.
+
+Users can redeem tokens for confectionery store items using the redeemTokens function, specifying the item number they wish to purchase (1 for Candy, 2 for Cake, and 3 for Doughnut).
+
 # Security Considerations
 
 Carefully manage the contract ownership and ensure only trusted parties can access the minting functionality.
